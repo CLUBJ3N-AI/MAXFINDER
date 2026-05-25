@@ -151,11 +151,48 @@
     .hamburger span{width:22px;height:2px;background:var(--gray);transition:.3s;}
 
     /* ─ HERO ─ */
-    .hero{min-height:100vh;display:flex;align-items:center;padding:110px 0 80px;position:relative;overflow:hidden;}
+    .hero{min-height:100vh;display:flex;align-items:center;padding:110px 0 60px;position:relative;overflow:hidden;}
+    /* Hero 2-col layout */
+    .hero-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;}
+    @media(max-width:960px){.hero-layout{grid-template-columns:1fr;}.hero-mockup-wrap{display:none;}}
+    /* Hero mockup frame */
+    .hero-mockup-wrap{position:relative;}
+    .hero-mockup-wrap::before{content:'';position:absolute;inset:-40px;background:radial-gradient(ellipse,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;z-index:0;}
+    .hero-mock-frame{position:relative;z-index:1;background:var(--bg2);border:1px solid rgba(168,85,247,.3);border-radius:14px;overflow:hidden;box-shadow:0 0 60px rgba(124,58,237,.25),0 0 120px rgba(124,58,237,.1),0 30px 60px rgba(0,0,0,.5);transform:perspective(1000px) rotateY(4deg) rotateX(2deg);transition:transform .4s;}
+    .hero-mock-frame:hover{transform:perspective(1000px) rotateY(0deg) rotateX(0deg);}
+    .hero-mock-bar{background:var(--card2);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);}
+    .hero-mock-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .hero-mock-url{flex:1;background:rgba(0,0,0,.4);border-radius:4px;padding:3px 12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdark);margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .hero-mock-live{font-family:'Share Tech Mono',monospace;font-size:8px;color:#4ade80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:4px;padding:2px 7px;white-space:nowrap;animation:blink-live 2s ease-in-out infinite;}
+    @keyframes blink-live{0%,100%{opacity:1}50%{opacity:.5}}
+    .hero-mock-toolbar{padding:8px 12px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);}
+    .hero-mock-list{max-height:320px;overflow:hidden;}
+    .hero-mock-card{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid rgba(26,26,48,.8);transition:background .2s;}
+    .hero-mock-card:hover{background:rgba(124,58,237,.06);}
+    .hero-mock-card.hmc-locked{position:relative;}
+    .hero-mock-card.hmc-locked>*{filter:blur(4px);pointer-events:none;}
+    .hero-mock-card.hmc-locked::after{content:'🔒  Activa tu licencia';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);background:rgba(5,5,8,.65);}
+    .hmc-num{font-family:'Orbitron',monospace;font-size:9px;color:var(--gdark);width:18px;text-align:center;flex-shrink:0;}
+    .hmc-info{flex:1;min-width:0;}
+    .hmc-name{font-size:11px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+    .hmc-addr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .hmc-right{display:flex;align-items:center;gap:5px;flex-shrink:0;}
+    .hmc-seo{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 6px;border-radius:3px;font-weight:700;}
+    .hmc-seo.sr{color:var(--red);background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.2);}
+    .hmc-seo.sy{color:var(--yellow);background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.2);}
+    .hmc-seo.sg{color:#4ade80;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.2);}
+    .hmc-btn{background:rgba(124,58,237,.15);border:1px solid rgba(168,85,247,.3);border-radius:4px;padding:3px 8px;font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--pglow);cursor:pointer;white-space:nowrap;}
+    .hero-mock-wall{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(76,29,149,.1));border-top:1px solid rgba(168,85,247,.3);}
+    .hero-mock-wall-txt{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);line-height:1.5;}
+    .hero-mock-wall-btn{background:linear-gradient(135deg,var(--purple),var(--plight));border:none;border-radius:4px;padding:6px 12px;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;}
+    /* floating tags */
+    .hero-mock-tags{position:absolute;display:flex;flex-direction:column;gap:8px;right:-30px;top:20%;}
+    .hero-mock-tag{background:var(--bg2);border:1px solid rgba(168,85,247,.35);border-radius:8px;padding:7px 12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);white-space:nowrap;box-shadow:0 4px 20px rgba(124,58,237,.2);}
     .hero-radial{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(124,58,237,.1) 0%,transparent 65%);pointer-events:none;}
     .hero-radial2{position:absolute;top:10%;left:-5%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(232,121,249,.05) 0%,transparent 70%);pointer-events:none;}
 
-    .hero-content{text-align:center;max-width:920px;margin:0 auto;}
+    .hero-content{text-align:left;max-width:600px;}
+    @media(max-width:960px){.hero-content{text-align:center;max-width:920px;margin:0 auto;}}
 
     .hero-badge{margin-bottom:30px;}
     .hero-badge-inner{display:inline-flex;align-items:center;gap:10px;background:rgba(124,58,237,.1);border:1px solid rgba(168,85,247,.2);border-radius:999px;padding:8px 20px 8px 12px;}
@@ -855,54 +892,68 @@
   <div class="hero-radial"></div>
   <div class="hero-radial2"></div>
   <div class="container">
-    <div class="hero-content">
+    <div class="hero-layout">
 
-      <div class="reveal" style="display:flex;justify-content:center;margin-bottom:24px;">
-        <img src="logo.png" class="mxf-logo-img xl" alt="MAXfinder logo"/>
-      </div>
-
-      <div class="hero-badge reveal">
-        <div class="hero-badge-inner">
-          <div class="hero-badge-dot"></div>
-          <span class="hero-badge-text">Powered by GPT-5 · Google Maps API · OpenStreetMap</span>
+      <!-- ── COLUMNA IZQUIERDA: mockup app ── -->
+      <div class="hero-mockup-wrap reveal">
+        <div class="hero-mock-frame">
+          <!-- barra de navegador -->
+          <div class="hero-mock-bar">
+            <div class="hero-mock-dot" style="background:#ff5f57"></div>
+            <div class="hero-mock-dot" style="background:#febc2e"></div>
+            <div class="hero-mock-dot" style="background:#28c840"></div>
+            <span class="hero-mock-url">maxfinder.es/workspace</span>
+            <span class="hero-mock-live">● EN VIVO</span>
+          </div>
+          <!-- toolbar contador -->
+          <div class="hero-mock-toolbar" id="hm-count">// Cargando leads...</div>
+          <!-- lista de leads -->
+          <div class="hero-mock-list" id="hm-list"></div>
+          <!-- muro demo -->
+          <div class="hero-mock-wall">
+            <div class="hero-mock-wall-txt">🔒 <strong style="color:#fff">5 leads más</strong> bloqueados<br>Activa tu licencia para verlos</div>
+            <button class="hero-mock-wall-btn" onclick="openCheckout('pro')">⚡ VER PLANES</button>
+          </div>
+        </div>
+        <!-- floating tags -->
+        <div class="hero-mock-tags">
+          <div class="hero-mock-tag">📞 Teléfono real</div>
+          <div class="hero-mock-tag">📧 Email verificado</div>
+          <div class="hero-mock-tag">🔍 SEO score</div>
         </div>
       </div>
 
-      <h1 class="hero-title reveal">
-        <span class="l1">500 Leads Verificados</span>
-        <span class="l2 glow-txt">en 60 Segundos</span>
-      </h1>
-
-      <p class="hero-sub reveal">
-        Detecta negocios locales con mal SEO, extrae su teléfono y email reales,<br/>
-        análisis de diagnóstico completo y mensajes personalizados con IA.
-      </p>
-
-      <p class="hero-model reveal">
-        <span>// Búsquedas ilimitadas ·</span> solo pagas los leads que desbloqueas
-      </p>
-
-      <div class="hero-btns reveal">
-        <a href="#pricing" class="btn-pri"><span>⚡</span> Ver planes — Desde €49/mes</a>
-        <a href="#dual"    class="btn-ghost"><span>▶</span> Ver productos</a>
-      </div>
-
-      <div class="hero-stats reveal">
-        <div class="stat">
-          <span class="stat-num count-up" data-target="500">0</span>
-          <span class="stat-lbl">LEADS / MIN</span>
+      <!-- ── COLUMNA DERECHA: texto hero ── -->
+      <div class="hero-content">
+        <div class="reveal" style="display:flex;justify-content:center;margin-bottom:20px;">
+          <img src="logo.png" class="mxf-logo-img lg" alt="MAXfinder logo"/>
         </div>
-        <div class="stat">
-          <span class="stat-num" id="stat2">10M<span style="font-size:22px">+</span></span>
-          <span class="stat-lbl">FICHAS EN ESPAÑA</span>
+        <div class="hero-badge reveal">
+          <div class="hero-badge-inner">
+            <div class="hero-badge-dot"></div>
+            <span class="hero-badge-text">Powered by GPT-5 · Google Maps API · OpenStreetMap</span>
+          </div>
         </div>
-        <div class="stat">
-          <span class="stat-num count-up" data-target="98" data-suffix="%">0</span>
-          <span class="stat-lbl">PRECISIÓN EMAIL</span>
+        <h1 class="hero-title reveal">
+          <span class="l1">500 Leads Verificados</span>
+          <span class="l2 glow-txt">en 60 Segundos</span>
+        </h1>
+        <p class="hero-sub reveal">
+          Detecta negocios locales con mal SEO, extrae su teléfono y email reales,<br/>
+          análisis de diagnóstico completo y mensajes personalizados con IA.
+        </p>
+        <p class="hero-model reveal">
+          <span>// Búsquedas ilimitadas ·</span> solo pagas los leads que desbloqueas
+        </p>
+        <div class="hero-btns reveal">
+          <a href="#pricing" class="btn-pri"><span>⚡</span> Ver planes — Desde €49/mes</a>
+          <a href="#dual"    class="btn-ghost"><span>▶</span> Ver productos</a>
         </div>
-        <div class="stat">
-          <span class="stat-num count-up" data-target="1200" data-suffix="+">0</span>
-          <span class="stat-lbl">AGENCIAS ACTIVAS</span>
+        <div class="hero-stats reveal">
+          <div class="stat"><span class="stat-num count-up" data-target="500">0</span><span class="stat-lbl">LEADS / MIN</span></div>
+          <div class="stat"><span class="stat-num" id="stat2">10M<span style="font-size:22px">+</span></span><span class="stat-lbl">FICHAS EN ESPAÑA</span></div>
+          <div class="stat"><span class="stat-num count-up" data-target="98" data-suffix="%">0</span><span class="stat-lbl">PRECISIÓN EMAIL</span></div>
+          <div class="stat"><span class="stat-num count-up" data-target="1200" data-suffix="+">0</span><span class="stat-lbl">AGENCIAS ACTIVAS</span></div>
         </div>
       </div>
 
@@ -3344,6 +3395,31 @@ function mxfLogout(){
   mxfLoginTab('in');
 }
 
+/* ── Hero mockup: rellena el panel con leads estáticos ── */
+function _fillHeroMock(){
+  const list=document.getElementById('hm-list');
+  const countEl=document.getElementById('hm-count');
+  if(!list)return;
+  const leads=generateStaticLeads('Dentistas','Madrid',8,40.4168,-3.7038,5000);
+  const FREE=3;
+  countEl.innerHTML='// <strong style="color:#fff">'+leads.length+' negocios</strong> detectados en <strong style="color:#fff">Madrid</strong> · <span style="color:#fbbf24;font-size:8px;">⚠ 5 bloqueados</span>';
+  list.innerHTML=leads.map((b,i)=>{
+    const locked=i>=FREE;
+    const sc=b.seo<20?'sr':b.seo<40?'sy':'sg';
+    return`<div class="hero-mock-card${locked?' hmc-locked':''}">
+      <span class="hmc-num">${String(i+1).padStart(2,'0')}</span>
+      <div class="hmc-info">
+        <div class="hmc-name">${escHtml(b.name)}</div>
+        <div class="hmc-addr">${escHtml(b.address)}</div>
+      </div>
+      <div class="hmc-right">
+        <span class="hmc-seo ${sc}">SEO ${b.seo}/100</span>
+        <button class="hmc-btn">${locked?'🔒':'🔓'} ${locked?'BLOQUEADO':'DESBLOQUEAR'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   populateSectors();
   populateCities();
@@ -3352,6 +3428,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   /* arrancar demo interactivo con datos por defecto */
   setTimeout(runLiveDemo,120);
+  /* rellenar mockup del hero */
+  setTimeout(_fillHeroMock,300);
   /* inicializar cursor personalizado */
   initCursor();
   /* inicializar sistema de autenticación */
