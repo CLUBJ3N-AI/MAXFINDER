@@ -498,45 +498,32 @@
     .ld-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%);transform:translateX(-100%);transition:.5s;}
     .ld-btn:hover::after{transform:translateX(100%);}
     .ld-btn:hover{box-shadow:0 0 26px rgba(168,85,247,.65);transform:translateY(-2px);}
-    /* browser frame */
-    .ld-frame{background:var(--bg2);border:1px solid rgba(168,85,247,.22);border-radius:12px;overflow:hidden;box-shadow:0 0 55px rgba(124,58,237,.18),0 0 100px rgba(124,58,237,.06);max-width:880px;margin:0 auto;}
+    /* ── DEMO (idéntico al workspace) ── */
+    .ld-frame{background:var(--bg2);border:1px solid rgba(168,85,247,.22);border-radius:12px;overflow:hidden;box-shadow:0 0 55px rgba(124,58,237,.18),0 0 100px rgba(124,58,237,.06);max-width:1100px;margin:0 auto;}
     .ld-titlebar{background:var(--card2);padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
     .ld-tb-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
     .ld-tb-url{flex:1;background:rgba(0,0,0,.35);border-radius:5px;padding:4px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gdark);margin-left:10px;}
     .ld-demo-badge{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;border-radius:4px;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.3);white-space:nowrap;}
-    .ld-toolbar{display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(0,0,0,.22);border-bottom:1px solid var(--border);}
-    .ld-count{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--pglow);flex:1;}
-    /* lead cards in demo */
-    .ld-list{overflow:hidden;}
-    .ld-card{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);transition:background .2s;}
-    .ld-card:not(.ld-locked):hover{background:rgba(124,58,237,.06);}
-    .ld-num{font-family:'Orbitron',monospace;font-size:10px;color:var(--gdark);width:22px;text-align:center;flex-shrink:0;}
-    .ld-info{flex:1;min-width:0;}
-    .ld-name{font-size:13px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
-    .ld-addr{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gdark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    .ld-right{display:flex;align-items:center;gap:7px;flex-shrink:0;}
-    .ld-seo-r{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--red);background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.22);border-radius:3px;padding:2px 7px;}
-    .ld-seo-y{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--yellow);background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.22);border-radius:3px;padding:2px 7px;}
-    .ld-unlock-btn{background:rgba(124,58,237,.14);border:1px solid rgba(168,85,247,.28);border-radius:5px;padding:5px 10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--pglow);cursor:pointer;transition:.2s;white-space:nowrap;}
-    .ld-unlock-btn:hover{background:rgba(124,58,237,.3);box-shadow:0 0 8px rgba(168,85,247,.3);}
-    /* locked card */
-    .ld-card.ld-locked{position:relative;cursor:pointer;}
-    .ld-card.ld-locked>*{filter:blur(5px);pointer-events:none;user-select:none;}
-    .ld-card.ld-locked::after{content:'🔒  Activa tu licencia para ver este lead';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--pglow);background:rgba(5,5,8,.62);cursor:pointer;}
-    /* paywall bar */
-    .ld-wall{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(76,29,149,.08));border-top:1px solid rgba(168,85,247,.32);}
-    .ld-wall-txt{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--pglow);line-height:1.7;}
-    .ld-wall-txt strong{color:var(--white);}
-    .ld-wall-btn{background:linear-gradient(135deg,var(--purple),var(--plight));color:#fff;border:none;border-radius:6px;padding:10px 22px;font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:.3s;}
-    .ld-wall-btn:hover{box-shadow:0 0 22px rgba(168,85,247,.6);transform:translateY(-1px);}
+    /* split body */
+    .ld-body{display:flex;height:480px;overflow:hidden;}
+    .ld-ws-panel{width:420px;flex-shrink:0;display:flex;flex-direction:column;border-right:1px solid var(--border);overflow:hidden;}
+    .ld-toolbar{display:flex;align-items:center;padding:10px 14px;background:rgba(0,0,0,.22);border-bottom:1px solid var(--border);flex-shrink:0;}
+    .ld-count{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--pglow);flex:1;line-height:1.5;}
+    .ld-list{flex:1;overflow-y:auto;}
+    .ld-list::-webkit-scrollbar{width:4px;}
+    .ld-list::-webkit-scrollbar-thumb{background:rgba(124,58,237,.3);border-radius:2px;}
+    /* map side */
+    .ld-ws-map{flex:1;position:relative;background:#04040a;min-width:0;}
+    #ld-leafmap{position:absolute;inset:0;width:100%;height:100%;}
+    .ld-map-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gdark);pointer-events:none;}
+    /* leaflet dark filter */
+    #ld-leafmap .leaflet-tile{filter:invert(1) hue-rotate(200deg) brightness(.75) contrast(1.1) saturate(1.4);}
     /* CTA below */
     .ld-cta{text-align:center;margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:16px;}
     .ld-cta-txt{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--gray);}
     .ld-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-    @media(max-width:640px){
-      .ld-wall{flex-direction:column;text-align:center;}
-      .ld-right{display:none;}
-    }
+    @media(max-width:780px){.ld-ws-map{display:none;}.ld-ws-panel{width:100%;}}
+    @media(max-width:640px){.ld-body{height:380px;}}
 
     /* ─ PRICING ─ */
     .pricing{padding:90px 0;background:var(--bg2);}
@@ -1316,7 +1303,7 @@
       <button class="ld-btn" onclick="runLiveDemo()">⚡ VER RESULTADOS</button>
     </div>
 
-    <!-- Panel simulado con resultados -->
+    <!-- Panel simulado con resultados — idéntico al workspace -->
     <div class="ld-frame reveal">
       <!-- Chrome titlebar -->
       <div class="ld-titlebar">
@@ -1326,19 +1313,23 @@
         <div class="ld-tb-url">maxfinder.es/workspace · demo</div>
         <span class="ld-demo-badge">◉ MODO DEMO</span>
       </div>
-      <!-- Toolbar con contador -->
-      <div class="ld-toolbar">
-        <span class="ld-count" id="ld-count">// Cargando resultados...</span>
-      </div>
-      <!-- Lista de leads -->
-      <div class="ld-list" id="ld-list"></div>
-      <!-- Muro de pago -->
-      <div class="ld-wall" id="ld-wall" style="display:none">
-        <div class="ld-wall-txt">
-          🔒 <strong id="ld-locked-n">0 leads más</strong> bloqueados en modo DEMO<br>
-          <span style="color:var(--gray);font-size:10px;">Activa tu licencia para desbloquearlos todos</span>
+      <!-- Split: lista + mapa -->
+      <div class="ld-body">
+        <!-- Panel izquierdo: lista de leads -->
+        <div class="ld-ws-panel">
+          <div class="ld-toolbar">
+            <span class="ld-count" id="ld-count">// Cargando resultados...</span>
+          </div>
+          <div class="ld-list ws-list" id="ld-list"></div>
         </div>
-        <button class="ld-wall-btn" onclick="openCheckout('pro')">⚡ VER PLANES</button>
+        <!-- Panel derecho: mapa -->
+        <div class="ld-ws-map">
+          <div id="ld-leafmap"></div>
+          <div class="ld-map-ph" id="ld-map-ph">
+            <span style="font-size:36px;opacity:.2">🗺</span>
+            <span>Cargando mapa...</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -3041,58 +3032,100 @@ const DEMO_DATA={
 
 const LD_FREE_LEADS=3; // visibles en demo
 
-function runLiveDemo(){
+/* ── Demo Leaflet map ── */
+let _ldMap=null, _ldMarkers=[];
+
+function _initLdMap(lat,lon){
+  const el=document.getElementById('ld-leafmap');
+  if(!el)return;
+  if(!_ldMap){
+    _ldMap=L.map(el,{zoomControl:true,attributionControl:false}).setView([lat,lon],13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19}).addTo(_ldMap);
+  }else{
+    _ldMap.setView([lat,lon],13);
+  }
+  const ph=document.getElementById('ld-map-ph');
+  if(ph)ph.style.display='none';
+  setTimeout(()=>_ldMap&&_ldMap.invalidateSize(),200);
+}
+
+function _updateLdMap(lat,lon,radius,leads){
+  if(!_ldMap)return;
+  _ldMarkers.forEach(m=>m.remove());
+  _ldMarkers=[];
+  const c=L.circle([lat,lon],{radius,color:'#7c3aed',fillColor:'#7c3aed',fillOpacity:.06,weight:1.5}).addTo(_ldMap);
+  _ldMarkers.push(c);
+  const pinIcon=L.divIcon({className:'',html:'<div class="ws-pin"><div class="ws-pin-ring"></div><div class="ws-pin-dot"></div></div>',iconSize:[12,12],iconAnchor:[6,6]});
+  leads.forEach(b=>{
+    if(!b.coords)return;
+    const mk=L.marker([b.coords.lat,b.coords.lon],{icon:pinIcon});
+    mk.bindPopup(`<div style="font-family:'Share Tech Mono',monospace;min-width:160px;font-size:11px;">
+      <div style="font-family:Orbitron,monospace;font-size:11px;font-weight:700;color:#c084fc;margin-bottom:4px;">${escHtml(b.name)}</div>
+      <div style="color:#9090b0;">📍 ${escHtml(b.address)}</div>
+    </div>`,{maxWidth:200,className:'ws-popup'});
+    mk.addTo(_ldMap);
+    _ldMarkers.push(mk);
+  });
+}
+
+async function runLiveDemo(){
   const sector=document.getElementById('ld-sector')?.value||'Dentistas';
   const city=document.getElementById('ld-city')?.value||'Madrid';
   const list=document.getElementById('ld-list');
   const count=document.getElementById('ld-count');
-  const wall=document.getElementById('ld-wall');
   if(!list)return;
 
-  // Obtener datos (fallback al primer sector/ciudad si no existe la combinación)
-  let leads=(DEMO_DATA[sector]&&DEMO_DATA[sector][city])
-    ? DEMO_DATA[sector][city]
-    : DEMO_DATA['Dentistas']['Madrid'];
+  const FREE=3;
+  count.innerHTML='// <span class="fm-spinner"></span>&nbsp;Buscando en <strong style="color:var(--white)">'+city+'</strong>...';
+  list.innerHTML='';
 
-  const total=leads.length;
-  const locked=Math.max(0,total-LD_FREE_LEADS);
+  /* geocodificar ciudad para coordenadas reales */
+  let geo={lat:40.4168,lon:-3.7038};
+  try{ const g=await geocodeCity(city); if(g)geo=g; }catch(e){}
 
-  count.innerHTML='// <strong style="color:var(--white)">'+total+
-    ' negocios</strong> detectados en <strong style="color:var(--white)">'+city+
-    '</strong> · <span style="color:#7ab4ff;font-size:9px;background:rgba(66,133,244,.12);padding:1px 6px;border-radius:3px;border:1px solid rgba(66,133,244,.25);">G Google Maps</span>'+
-    (locked?' <span style="color:#fbbf24;font-size:9px;margin-left:8px;">⚠ '+locked+' bloqueados</span>':'');
+  const radius=5000;
+  const leads=generateStaticLeads(sector,city,8,geo.lat,geo.lon,radius);
+  const locked=Math.max(0,leads.length-FREE);
 
-  list.innerHTML=leads.map((b,i)=>{
-    const isLocked=i>=LD_FREE_LEADS;
-    const seoCls=b.seo<20?'ld-seo-r':'ld-seo-y';
+  count.innerHTML='// <strong style="color:var(--white)">'+leads.length+
+    ' negocios</strong> detectados en <strong style="color:var(--white)">'+city+'</strong>'+
+    ' · <span style="color:#4ade80;font-size:9px;background:rgba(74,222,128,.08);padding:1px 6px;border-radius:3px;border:1px solid rgba(74,222,128,.2);">⬡ OSM</span>'+
+    (locked?' <span style="color:#fbbf24;font-size:9px;margin-left:6px;">⚠ '+locked+' bloqueados</span>':'');
+
+  const cards=leads.map((b,i)=>{
+    const isLocked=i>=FREE;
+    const sc=seoClass(b.seo);
     if(isLocked){
-      return`<div class="ld-card ld-locked" onclick="openCheckout('pro')">
-        <span class="ld-num">${String(i+1).padStart(2,'0')}</span>
-        <div class="ld-info"><div class="ld-name">${escHtml(b.n)}</div><div class="ld-addr">${escHtml(b.a)}</div></div>
-        <div class="ld-right"><span class="${seoCls}">SEO ${b.seo}/100</span><button class="ld-unlock-btn">🔒 BLOQUEADO</button></div>
+      return`<div class="ws-lead-card ws-locked" onclick="openCheckout('pro')">
+        <span class="ws-lc-num">${String(i+1).padStart(2,'0')}</span>
+        <div class="ws-lc-info"><div class="ws-lc-name">${escHtml(b.name)}</div><div class="ws-lc-addr">${escHtml(b.address)}</div></div>
+        <div class="ws-lc-right"><span class="fm-item-seo ${sc}">SEO ${b.seo}/100</span><button class="ws-unlock-btn">🔒 BLOQUEADO</button></div>
       </div>`;
     }
-    return`<div class="ld-card">
-      <span class="ld-num">${String(i+1).padStart(2,'0')}</span>
-      <div class="ld-info">
-        <div class="ld-name">${escHtml(b.n)} <span class="ws-src-g">G</span><span class="ws-grating">★${b.r.toFixed(1)}</span></div>
-        <div class="ld-addr">${escHtml(b.a)}</div>
+    return`<div class="ws-lead-card">
+      <span class="ws-lc-num">${String(i+1).padStart(2,'0')}</span>
+      <div class="ws-lc-info">
+        <div class="ws-lc-name">${escHtml(b.name)} <span class="ws-src-osm">OSM</span></div>
+        <div class="ws-lc-addr">${escHtml(b.address)}</div>
       </div>
-      <div class="ld-right">
-        <span class="${seoCls}">SEO ${b.seo}/100</span>
-        <button class="ld-unlock-btn" onclick="event.stopPropagation();openCheckout('pro')">🔓 DESBLOQUEAR</button>
+      <div class="ws-lc-right">
+        <span class="fm-item-seo ${sc}">SEO ${b.seo}/100</span>
+        <button class="ws-unlock-btn" onclick="event.stopPropagation();openCheckout('pro')">🔓 DESBLOQUEAR</button>
       </div>
     </div>`;
   }).join('');
 
-  if(wall){
-    if(locked>0){
-      document.getElementById('ld-locked-n').textContent=locked+' leads más';
-      wall.style.display='flex';
-    }else{
-      wall.style.display='none';
-    }
-  }
+  const wall=locked>0?`<div class="ws-demo-wall">
+    <div class="ws-demo-wall-txt">🔒 <strong>${locked} leads más</strong> bloqueados en modo DEMO<br>
+    <span style="font-size:10px;color:var(--gray)">Activa tu licencia para desbloquearlos todos</span></div>
+    <button class="ws-demo-wall-btn" onclick="openCheckout('pro')">⚡ VER PLANES</button>
+  </div>`:'';
+
+  list.innerHTML=cards+wall;
+
+  /* mapa */
+  _initLdMap(geo.lat,geo.lon);
+  _updateLdMap(geo.lat,geo.lon,radius,leads);
 }
 
 /* ═══════════════════════════════════════════════════════════════
