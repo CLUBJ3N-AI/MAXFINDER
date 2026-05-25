@@ -132,6 +132,10 @@
     .nav-right{display:flex;align-items:center;gap:16px;}
     .nav-login{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gray);text-decoration:none;transition:color .2s;}
     .nav-login:hover{color:var(--white);}
+    .nav-user-info{display:flex;align-items:center;gap:10px;}
+    .nav-user-name{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--pglow);letter-spacing:.5px;}
+    .nav-logout-btn{background:transparent;border:1px solid rgba(168,85,247,.3);border-radius:6px;padding:5px 11px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gdark);cursor:pointer;transition:.2s;}
+    .nav-logout-btn:hover{border-color:rgba(168,85,247,.6);color:var(--pglow);}
     .nav-btn{background:linear-gradient(135deg,var(--purple),var(--plight));color:#fff;border:none;border-radius:6px;padding:9px 20px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;text-decoration:none;transition:all .3s;}
     .nav-btn:hover{box-shadow:0 0 20px rgba(168,85,247,.6);transform:translateY(-1px);}
 
@@ -836,8 +840,12 @@
       <li><a href="#pricing">Precios</a></li>
     </ul>
     <div class="nav-right">
-      <a href="#" class="nav-login" onclick="mxfOpenLogin();return false;">Iniciar sesión</a>
-      <a href="#pricing" class="nav-btn">VER PLANES</a>
+      <a href="#" class="nav-login" id="nav-login-btn" onclick="mxfOpenLogin();return false;">Iniciar sesión</a>
+      <div class="nav-user-info" id="nav-user-info" style="display:none">
+        <span class="nav-user-name" id="nav-user-name"></span>
+        <button class="nav-logout-btn" onclick="mxfLogout()">Salir</button>
+      </div>
+      <a href="#pricing" class="nav-btn" id="nav-ver-planes">VER PLANES</a>
     </div>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -3113,24 +3121,47 @@ function mxfIsAdmin(){
   return !!(s && s.role === 'admin' && s.email === _ADMIN_EMAIL);
 }
 
-/* ─ Apply session UI: show user info, hide login overlay ─ */
+/* ─ Apply session UI: actualiza nav + workspace topbar ─ */
 function _mxfApplySession(session){
   const ov   = document.getElementById('mxf-login-ov');
-  const info = document.getElementById('ws-user-info');
-  const name = document.getElementById('ws-user-name');
   const badge= document.getElementById('ws-plan-badge');
 
-  if(ov)  ov.classList.add('hidden');
-  if(info){ info.style.display='flex'; }
-  if(name){
-    if(session.role==='admin'){
-      name.innerHTML = '<span class="ws-admin-badge">⚡ ADMIN · '+session.name+'</span>';
+  // Ocultar overlay de login
+  if(ov) ov.classList.add('hidden');
+
+  /* ── NAV: cambiar "Iniciar sesión" por nombre del usuario ── */
+  const navLoginBtn  = document.getElementById('nav-login-btn');
+  const navUserInfo  = document.getElementById('nav-user-info');
+  const navUserName  = document.getElementById('nav-user-name');
+  const navVerPlanes = document.getElementById('nav-ver-planes');
+
+  if(navLoginBtn) navLoginBtn.style.display = 'none';
+  if(navUserInfo) navUserInfo.style.display  = 'flex';
+  if(navUserName){
+    if(session.role === 'admin'){
+      navUserName.innerHTML = '<span class="ws-admin-badge">⚡ ADMIN · '+session.name+'</span>';
     } else {
-      name.textContent = session.name || session.email;
+      navUserName.textContent = '👤 ' + (session.name || session.email);
     }
   }
-  // Admin no necesita activar plan — ocultar badge "DEMO · Activar"
-  if(badge && session.role==='admin') badge.style.display='none';
+  // Admin: ocultar "VER PLANES" y badge de activación
+  if(session.role === 'admin'){
+    if(navVerPlanes) navVerPlanes.style.display = 'none';
+    if(badge) badge.style.display = 'none';
+  }
+
+  /* ── WORKSPACE TOPBAR ── */
+  const wsInfo = document.getElementById('ws-user-info');
+  const wsName = document.getElementById('ws-user-name');
+  if(wsInfo) wsInfo.style.display = 'flex';
+  if(wsName){
+    if(session.role === 'admin'){
+      wsName.innerHTML = '<span class="ws-admin-badge">⚡ ADMIN · '+session.name+'</span>';
+    } else {
+      wsName.textContent = session.name || session.email;
+    }
+  }
+
   // Actualizar estado de paywall
   _updateBbddGate();
 }
@@ -3238,19 +3269,31 @@ function mxfDoRegister(){
 /* ─ Logout ─ */
 function mxfLogout(){
   mxfClearSession();
-  // Restaurar UI
-  const info  = document.getElementById('ws-user-info');
-  const badge = document.getElementById('ws-plan-badge');
-  if(info)  info.style.display='none';
-  if(badge) badge.style.display='';
-  // Cerrar workspace si está abierto
+
+  /* ── Restaurar NAV ── */
+  const navLoginBtn  = document.getElementById('nav-login-btn');
+  const navUserInfo  = document.getElementById('nav-user-info');
+  const navVerPlanes = document.getElementById('nav-ver-planes');
+  if(navLoginBtn) navLoginBtn.style.display = '';
+  if(navUserInfo) navUserInfo.style.display  = 'none';
+  if(navVerPlanes) navVerPlanes.style.display = '';
+
+  /* ── Restaurar workspace topbar ── */
+  const wsInfo  = document.getElementById('ws-user-info');
+  const wsBadge = document.getElementById('ws-plan-badge');
+  if(wsInfo)  wsInfo.style.display  = 'none';
+  if(wsBadge) wsBadge.style.display = '';
+
+  /* ── Cerrar workspace ── */
   closeWorkspace();
-  // Mostrar overlay de login
-  const ov = document.getElementById('mxf-login-ov');
-  if(ov){ ov.classList.remove('hidden'); }
-  setTimeout(()=>{ const el=document.getElementById('mxf-in-email'); if(el){ el.value=''; el.focus(); } }, 200);
-  document.getElementById('mxf-in-pass') && (document.getElementById('mxf-in-pass').value='');
-  document.getElementById('mxf-in-err') && (document.getElementById('mxf-in-err').textContent='');
+
+  /* ── Reset formulario login ── */
+  const pass = document.getElementById('mxf-in-pass');
+  const err  = document.getElementById('mxf-in-err');
+  const mail = document.getElementById('mxf-in-email');
+  if(mail) mail.value = '';
+  if(pass) pass.value = '';
+  if(err)  err.textContent = '';
   mxfLoginTab('in');
 }
 
