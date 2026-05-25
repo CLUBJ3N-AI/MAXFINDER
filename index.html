@@ -152,47 +152,51 @@
 
     /* ─ HERO ─ */
     .hero{min-height:100vh;display:flex;align-items:center;padding:110px 0 60px;position:relative;overflow:hidden;}
-    /* Hero 2-col layout */
-    .hero-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;}
-    @media(max-width:960px){.hero-layout{grid-template-columns:1fr;}.hero-mockup-wrap{display:none;}}
-    /* Hero mockup frame */
-    .hero-mockup-wrap{position:relative;}
-    .hero-mockup-wrap::before{content:'';position:absolute;inset:-40px;background:radial-gradient(ellipse,rgba(124,58,237,.22) 0%,transparent 70%);pointer-events:none;z-index:0;}
-    .hero-mock-frame{position:relative;z-index:1;background:var(--bg2);border:1px solid rgba(168,85,247,.3);border-radius:14px;overflow:hidden;box-shadow:0 0 60px rgba(124,58,237,.25),0 0 120px rgba(124,58,237,.1),0 30px 60px rgba(0,0,0,.5);transform:perspective(1000px) rotateY(4deg) rotateX(2deg);transition:transform .4s;}
-    .hero-mock-frame:hover{transform:perspective(1000px) rotateY(0deg) rotateX(0deg);}
-    .hero-mock-bar{background:var(--card2);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);}
-    .hero-mock-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-    .hero-mock-url{flex:1;background:rgba(0,0,0,.4);border-radius:4px;padding:3px 12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdark);margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    .hero-mock-live{font-family:'Share Tech Mono',monospace;font-size:8px;color:#4ade80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:4px;padding:2px 7px;white-space:nowrap;animation:blink-live 2s ease-in-out infinite;}
-    @keyframes blink-live{0%,100%{opacity:1}50%{opacity:.5}}
-    .hero-mock-toolbar{padding:8px 12px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);}
-    .hero-mock-list{max-height:320px;overflow:hidden;}
-    .hero-mock-card{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid rgba(26,26,48,.8);transition:background .2s;}
-    .hero-mock-card:hover{background:rgba(124,58,237,.06);}
-    .hero-mock-card.hmc-locked{position:relative;}
-    .hero-mock-card.hmc-locked>*{filter:blur(4px);pointer-events:none;}
-    .hero-mock-card.hmc-locked::after{content:'🔒  Activa tu licencia';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);background:rgba(5,5,8,.65);}
-    .hmc-num{font-family:'Orbitron',monospace;font-size:9px;color:var(--gdark);width:18px;text-align:center;flex-shrink:0;}
-    .hmc-info{flex:1;min-width:0;}
-    .hmc-name{font-size:11px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
-    .hmc-addr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    .hmc-right{display:flex;align-items:center;gap:5px;flex-shrink:0;}
-    .hmc-seo{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 6px;border-radius:3px;font-weight:700;}
-    .hmc-seo.sr{color:var(--red);background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.2);}
-    .hmc-seo.sy{color:var(--yellow);background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.2);}
-    .hmc-seo.sg{color:#4ade80;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.2);}
-    .hmc-btn{background:rgba(124,58,237,.15);border:1px solid rgba(168,85,247,.3);border-radius:4px;padding:3px 8px;font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--pglow);cursor:pointer;white-space:nowrap;}
-    .hero-mock-wall{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(76,29,149,.1));border-top:1px solid rgba(168,85,247,.3);}
-    .hero-mock-wall-txt{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);line-height:1.5;}
-    .hero-mock-wall-btn{background:linear-gradient(135deg,var(--purple),var(--plight));border:none;border-radius:4px;padding:6px 12px;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;}
-    /* floating tags */
-    .hero-mock-tags{position:absolute;display:flex;flex-direction:column;gap:8px;right:-30px;top:20%;}
-    .hero-mock-tag{background:var(--bg2);border:1px solid rgba(168,85,247,.35);border-radius:8px;padding:7px 12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);white-space:nowrap;box-shadow:0 4px 20px rgba(124,58,237,.2);}
     .hero-radial{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(124,58,237,.1) 0%,transparent 65%);pointer-events:none;}
     .hero-radial2{position:absolute;top:10%;left:-5%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(232,121,249,.05) 0%,transparent 70%);pointer-events:none;}
+    .hero-layout{width:100%;}
+    .hero-content{text-align:center;max-width:920px;margin:0 auto;}
 
-    .hero-content{text-align:left;max-width:600px;}
-    @media(max-width:960px){.hero-content{text-align:center;max-width:920px;margin:0 auto;}}
+    /* ── PRODUCT PREVIEW (después del hero) ── */
+    .product-preview{padding:0 0 80px;position:relative;z-index:1;}
+    .pp-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(124,58,237,.18) 0%,transparent 65%);pointer-events:none;}
+    .pp-wrap{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;}
+    .pp-frame{background:var(--bg2);border:1px solid rgba(168,85,247,.28);border-radius:16px;overflow:hidden;box-shadow:0 0 80px rgba(124,58,237,.22),0 40px 80px rgba(0,0,0,.6);transform:perspective(1200px) rotateX(4deg);transition:transform .5s;}
+    .pp-frame:hover{transform:perspective(1200px) rotateX(0deg);}
+    .pp-fade{position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to top,var(--bg) 30%,transparent);pointer-events:none;z-index:2;}
+    .pp-bar{background:var(--card2);padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+    .pp-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+    .pp-url{flex:1;background:rgba(0,0,0,.4);border-radius:5px;padding:4px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gdark);margin-left:10px;}
+    .pp-live{font-family:'Share Tech Mono',monospace;font-size:9px;color:#4ade80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:4px;padding:3px 9px;animation:blink-live 2s ease-in-out infinite;}
+    @keyframes blink-live{0%,100%{opacity:1}50%{opacity:.45}}
+    .pp-body{display:flex;height:420px;overflow:hidden;}
+    .pp-panel{width:420px;flex-shrink:0;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+    .pp-toolbar{padding:10px 14px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--pglow);flex-shrink:0;}
+    .pp-list{flex:1;overflow:hidden;}
+    .pp-card{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(26,26,48,.9);}
+    .pp-card.pp-locked{position:relative;}
+    .pp-card.pp-locked>*{filter:blur(4px);pointer-events:none;}
+    .pp-card.pp-locked::after{content:'🔒  Activa tu licencia para ver este lead';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);background:rgba(5,5,8,.65);letter-spacing:.3px;}
+    .pp-num{font-family:'Orbitron',monospace;font-size:9px;color:var(--gdark);width:20px;text-align:center;flex-shrink:0;}
+    .pp-info{flex:1;min-width:0;}
+    .pp-name{font-size:12px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+    .pp-addr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .pp-right{display:flex;align-items:center;gap:5px;flex-shrink:0;}
+    .pp-seo{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 6px;border-radius:3px;font-weight:700;}
+    .pp-seo.r{color:var(--red);background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.22);}
+    .pp-seo.y{color:var(--yellow);background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.22);}
+    .pp-seo.g{color:#4ade80;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.22);}
+    .pp-btn{background:rgba(124,58,237,.15);border:1px solid rgba(168,85,247,.3);border-radius:4px;padding:4px 9px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);white-space:nowrap;}
+    .pp-wall{padding:10px 14px;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(76,29,149,.08));border-top:1px solid rgba(168,85,247,.3);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-shrink:0;}
+    .pp-wall-txt{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--pglow);line-height:1.6;}
+    .pp-wall-btn{background:linear-gradient(135deg,var(--purple),var(--plight));border:none;border-radius:5px;padding:7px 14px;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;}
+    .pp-map{flex:1;background:#04040a;position:relative;}
+    #pp-leafmap{position:absolute;inset:0;}
+    #pp-leafmap .leaflet-tile{filter:invert(1) hue-rotate(200deg) brightness(.75) contrast(1.1) saturate(1.4);}
+    /* badges del preview */
+    .pp-badges{display:flex;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap;}
+    .pp-badge{display:flex;align-items:center;gap:7px;background:rgba(124,58,237,.08);border:1px solid rgba(168,85,247,.2);border-radius:999px;padding:7px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--pglow);}
+    .pp-badge em{font-style:normal;font-size:14px;}
 
     .hero-badge{margin-bottom:30px;}
     .hero-badge-inner{display:inline-flex;align-items:center;gap:10px;background:rgba(124,58,237,.1);border:1px solid rgba(168,85,247,.2);border-radius:999px;padding:8px 20px 8px 12px;}
@@ -893,40 +897,9 @@
   <div class="hero-radial2"></div>
   <div class="container">
     <div class="hero-layout">
-
-      <!-- ── COLUMNA IZQUIERDA: mockup app ── -->
-      <div class="hero-mockup-wrap reveal">
-        <div class="hero-mock-frame">
-          <!-- barra de navegador -->
-          <div class="hero-mock-bar">
-            <div class="hero-mock-dot" style="background:#ff5f57"></div>
-            <div class="hero-mock-dot" style="background:#febc2e"></div>
-            <div class="hero-mock-dot" style="background:#28c840"></div>
-            <span class="hero-mock-url">maxfinder.es/workspace</span>
-            <span class="hero-mock-live">● EN VIVO</span>
-          </div>
-          <!-- toolbar contador -->
-          <div class="hero-mock-toolbar" id="hm-count">// Cargando leads...</div>
-          <!-- lista de leads -->
-          <div class="hero-mock-list" id="hm-list"></div>
-          <!-- muro demo -->
-          <div class="hero-mock-wall">
-            <div class="hero-mock-wall-txt">🔒 <strong style="color:#fff">5 leads más</strong> bloqueados<br>Activa tu licencia para verlos</div>
-            <button class="hero-mock-wall-btn" onclick="openCheckout('pro')">⚡ VER PLANES</button>
-          </div>
-        </div>
-        <!-- floating tags -->
-        <div class="hero-mock-tags">
-          <div class="hero-mock-tag">📞 Teléfono real</div>
-          <div class="hero-mock-tag">📧 Email verificado</div>
-          <div class="hero-mock-tag">🔍 SEO score</div>
-        </div>
-      </div>
-
-      <!-- ── COLUMNA DERECHA: texto hero ── -->
       <div class="hero-content">
         <div class="reveal" style="display:flex;justify-content:center;margin-bottom:20px;">
-          <img src="logo.png" class="mxf-logo-img lg" alt="MAXfinder logo"/>
+          <img src="logo.png" class="mxf-logo-img xl" alt="MAXfinder logo"/>
         </div>
         <div class="hero-badge reveal">
           <div class="hero-badge-inner">
@@ -956,7 +929,48 @@
           <div class="stat"><span class="stat-num count-up" data-target="1200" data-suffix="+">0</span><span class="stat-lbl">AGENCIAS ACTIVAS</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- ══════════ PRODUCT PREVIEW ══════════ -->
+<section class="product-preview">
+  <div class="pp-glow"></div>
+  <div class="pp-wrap">
+    <!-- marco browser con perspectiva 3D -->
+    <div class="pp-frame reveal">
+      <!-- barra navegador -->
+      <div class="pp-bar">
+        <div class="pp-dot" style="background:#ff5f57"></div>
+        <div class="pp-dot" style="background:#febc2e"></div>
+        <div class="pp-dot" style="background:#28c840"></div>
+        <span class="pp-url">maxfinder.es/workspace · Dentistas · Madrid</span>
+        <span class="pp-live">● EN VIVO</span>
+      </div>
+      <!-- split: lista + mapa -->
+      <div class="pp-body">
+        <!-- lista izquierda -->
+        <div class="pp-panel">
+          <div class="pp-toolbar" id="pp-count">// Cargando resultados...</div>
+          <div class="pp-list" id="pp-list"></div>
+          <div class="pp-wall">
+            <div class="pp-wall-txt">🔒 <strong style="color:#fff">5 leads más</strong> bloqueados en modo DEMO<br>Activa tu licencia para desbloquearlos todos</div>
+            <button class="pp-wall-btn" onclick="openCheckout('pro')">⚡ VER PLANES</button>
+          </div>
+        </div>
+        <!-- mapa derecha -->
+        <div class="pp-map"><div id="pp-leafmap"></div></div>
+      </div>
+    </div>
+    <!-- fade bottom -->
+    <div class="pp-fade"></div>
+    <!-- badges debajo -->
+    <div class="pp-badges reveal">
+      <div class="pp-badge"><em>📞</em> Teléfono directo real</div>
+      <div class="pp-badge"><em>📧</em> Email verificado</div>
+      <div class="pp-badge"><em>🔍</em> Score SEO automático</div>
+      <div class="pp-badge"><em>📍</em> Ubicación en mapa</div>
+      <div class="pp-badge"><em>📊</em> Diagnóstico web completo</div>
     </div>
   </div>
 </section>
@@ -3395,29 +3409,52 @@ function mxfLogout(){
   mxfLoginTab('in');
 }
 
-/* ── Hero mockup: rellena el panel con leads estáticos ── */
-function _fillHeroMock(){
-  const list=document.getElementById('hm-list');
-  const countEl=document.getElementById('hm-count');
+/* ── Product Preview: rellena el panel y mapa del hero preview ── */
+let _ppMap=null, _ppMarkers=[];
+async function _fillProductPreview(){
+  const list=document.getElementById('pp-list');
+  const countEl=document.getElementById('pp-count');
   if(!list)return;
-  const leads=generateStaticLeads('Dentistas','Madrid',8,40.4168,-3.7038,5000);
+
+  let geo={lat:40.4168,lon:-3.7038};
+  try{ const g=await geocodeCity('Madrid'); if(g)geo=g; }catch(e){}
+
+  const radius=5000;
+  const leads=generateStaticLeads('Dentistas','Madrid',8,geo.lat,geo.lon,radius);
   const FREE=3;
-  countEl.innerHTML='// <strong style="color:#fff">'+leads.length+' negocios</strong> detectados en <strong style="color:#fff">Madrid</strong> · <span style="color:#fbbf24;font-size:8px;">⚠ 5 bloqueados</span>';
+  countEl.innerHTML='// <strong style="color:#fff">'+leads.length+' negocios</strong> · Madrid · <span style="color:#fbbf24;font-size:9px;">⚠ 5 bloqueados</span>';
+
   list.innerHTML=leads.map((b,i)=>{
     const locked=i>=FREE;
-    const sc=b.seo<20?'sr':b.seo<40?'sy':'sg';
-    return`<div class="hero-mock-card${locked?' hmc-locked':''}">
-      <span class="hmc-num">${String(i+1).padStart(2,'0')}</span>
-      <div class="hmc-info">
-        <div class="hmc-name">${escHtml(b.name)}</div>
-        <div class="hmc-addr">${escHtml(b.address)}</div>
+    const sc=b.seo<20?'r':b.seo<40?'y':'g';
+    return`<div class="pp-card${locked?' pp-locked':''}">
+      <span class="pp-num">${String(i+1).padStart(2,'0')}</span>
+      <div class="pp-info">
+        <div class="pp-name">${escHtml(b.name)}</div>
+        <div class="pp-addr">${escHtml(b.address)}</div>
       </div>
-      <div class="hmc-right">
-        <span class="hmc-seo ${sc}">SEO ${b.seo}/100</span>
-        <button class="hmc-btn">${locked?'🔒':'🔓'} ${locked?'BLOQUEADO':'DESBLOQUEAR'}</button>
+      <div class="pp-right">
+        <span class="pp-seo ${sc}">SEO ${b.seo}/100</span>
+        <button class="pp-btn">${locked?'🔒 BLOQUEADO':'🔓 DESBLOQUEAR'}</button>
       </div>
     </div>`;
   }).join('');
+
+  /* mapa */
+  const el=document.getElementById('pp-leafmap');
+  if(el && !_ppMap){
+    _ppMap=L.map(el,{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false}).setView([geo.lat,geo.lon],13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:19}).addTo(_ppMap);
+  }
+  if(_ppMap){
+    _ppMap.setView([geo.lat,geo.lon],13);
+    _ppMarkers.forEach(m=>m.remove()); _ppMarkers=[];
+    const c=L.circle([geo.lat,geo.lon],{radius,color:'#7c3aed',fillColor:'#7c3aed',fillOpacity:.06,weight:1.5}).addTo(_ppMap);
+    _ppMarkers.push(c);
+    const pin=L.divIcon({className:'',html:'<div class="ws-pin"><div class="ws-pin-ring"></div><div class="ws-pin-dot"></div></div>',iconSize:[12,12],iconAnchor:[6,6]});
+    leads.forEach(b=>{ if(!b.coords)return; const m=L.marker([b.coords.lat,b.coords.lon],{icon:pin}).addTo(_ppMap); _ppMarkers.push(m); });
+    setTimeout(()=>_ppMap.invalidateSize(),200);
+  }
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -3428,8 +3465,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   /* arrancar demo interactivo con datos por defecto */
   setTimeout(runLiveDemo,120);
-  /* rellenar mockup del hero */
-  setTimeout(_fillHeroMock,300);
+  /* rellenar product preview */
+  setTimeout(_fillProductPreview,300);
   /* inicializar cursor personalizado */
   initCursor();
   /* inicializar sistema de autenticación */
