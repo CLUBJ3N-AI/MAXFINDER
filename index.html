@@ -164,6 +164,17 @@
     .pp-frame{background:var(--bg2);border:1px solid rgba(168,85,247,.28);border-radius:16px;overflow:hidden;box-shadow:0 0 80px rgba(124,58,237,.22),0 40px 80px rgba(0,0,0,.6);transform:perspective(1200px) rotateX(4deg);transition:transform .5s;}
     .pp-frame:hover{transform:perspective(1200px) rotateX(0deg);}
     .pp-fade{display:none;}
+    /* CTA bajo el preview */
+    .pp-cta{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:32px;}
+    .pp-cta-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(124,58,237,.9),rgba(168,85,247,.9));border:1px solid rgba(168,85,247,.5);border-radius:12px;padding:14px 32px;font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:.5px;box-shadow:0 0 30px rgba(124,58,237,.4),0 4px 24px rgba(0,0,0,.4);transition:all .25s;text-transform:uppercase;}
+    .pp-cta-btn:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(168,85,247,.6),0 8px 32px rgba(0,0,0,.5);background:linear-gradient(135deg,rgba(139,68,255,1),rgba(192,106,255,1));}
+    .pp-cta-icon{font-size:18px;animation:blink-live 2s ease-in-out infinite;}
+    .pp-cta-arrow{font-size:18px;transition:transform .25s;}
+    .pp-cta-btn:hover .pp-cta-arrow{transform:translateX(4px);}
+    .pp-cta-sub{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gdim);text-align:center;margin:0;}
+    /* cuando NO tiene licencia, modo outline */
+    .pp-cta-btn.pp-cta-nolic{background:transparent;border-color:rgba(168,85,247,.4);color:var(--pglow);box-shadow:none;}
+    .pp-cta-btn.pp-nolic:hover{background:rgba(124,58,237,.12);}
     .pp-bar{background:var(--card2);padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
     .pp-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
     .pp-url{flex:1;background:rgba(0,0,0,.4);border-radius:5px;padding:4px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gdark);margin-left:10px;}
@@ -959,6 +970,15 @@
     </div>
     <!-- fade bottom -->
     <div class="pp-fade"></div>
+    <!-- CTA bajo el frame -->
+    <div class="pp-cta reveal" id="pp-cta-wrap">
+      <button class="pp-cta-btn" id="pp-cta-btn" onclick="mxfOpenPanelCTA()">
+        <span class="pp-cta-icon">⚡</span>
+        <span class="pp-cta-label" id="pp-cta-label">Abrir mi Panel</span>
+        <span class="pp-cta-arrow">→</span>
+      </button>
+      <p class="pp-cta-sub" id="pp-cta-sub">Accede ahora a tu workspace con los leads en tiempo real</p>
+    </div>
   </div>
 </section>
 
@@ -3188,8 +3208,9 @@ function _mxfApplySession(session){
     }
   }
 
-  // Actualizar estado de paywall
+  // Actualizar estado de paywall y CTA
   _updateBbddGate();
+  _updatePPCta();
 }
 
 /* ─ Tab switcher ─ */
@@ -3216,6 +3237,45 @@ function mxfAuthInit(){
     mxfClearSession();
   }
   // Sin sesión: la página se muestra normal; el usuario puede hacer clic en "Iniciar sesión"
+}
+
+/* ─ Botón CTA bajo el product preview ─ */
+function mxfOpenPanelCTA(){
+  const licensed = mxfIsAdmin() || !!getLicense();
+  const hasSession = !!mxfGetSession();
+  if(licensed){
+    // Tiene suscripción activa → abrir panel directamente
+    openWorkspace();
+  } else if(hasSession){
+    // Tiene sesión pero sin licencia → ir a planes
+    document.getElementById('pricing')?.scrollIntoView({behavior:'smooth'});
+  } else {
+    // Sin sesión → abrir login
+    mxfOpenLogin();
+  }
+}
+
+/* actualiza el aspecto del botón CTA según el estado del usuario */
+function _updatePPCta(){
+  const btn   = document.getElementById('pp-cta-btn');
+  const label = document.getElementById('pp-cta-label');
+  const sub   = document.getElementById('pp-cta-sub');
+  if(!btn) return;
+  const licensed   = mxfIsAdmin() || !!getLicense();
+  const hasSession = !!mxfGetSession();
+  if(licensed){
+    btn.classList.remove('pp-cta-nolic');
+    if(label) label.textContent = 'Abrir mi Panel';
+    if(sub)   sub.textContent   = 'Accede ahora a tu workspace con los leads en tiempo real';
+  } else if(hasSession){
+    btn.classList.add('pp-cta-nolic');
+    if(label) label.textContent = 'Ver Planes';
+    if(sub)   sub.textContent   = 'Activa tu suscripción para acceder al panel completo';
+  } else {
+    btn.classList.add('pp-cta-nolic');
+    if(label) label.textContent = 'Iniciar sesión para acceder';
+    if(sub)   sub.textContent   = 'Crea tu cuenta gratis o inicia sesión';
+  }
 }
 
 /* ─ Abrir overlay de login manualmente ─ */
@@ -3321,6 +3381,7 @@ function mxfLogout(){
   if(pass) pass.value = '';
   if(err)  err.textContent = '';
   mxfLoginTab('in');
+  _updatePPCta();
 }
 
 /* ── Product Preview: rellena el panel y mapa del hero preview ── */
@@ -3387,6 +3448,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   mxfAuthInit();
   /* controlar acceso al panel de búsqueda */
   _updateBbddGate();
+  /* actualizar CTA del product preview */
+  _updatePPCta();
 });
 
 /* ═══════════════════════════════════════════════════════════════
