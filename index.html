@@ -459,20 +459,38 @@
     .co-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);outline:none;transition:border-color .2s;}
     .co-input:focus{border-color:rgba(168,85,247,.45);}
     .co-divider{height:1px;background:var(--border);margin:20px 0 16px;}
-    .co-btn-stripe{width:100%;background:linear-gradient(135deg,#635bff,#8b5cf6);border:none;border-radius:8px;padding:14px 20px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:#fff;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
+    /* tabs de método de pago */
+    .co-methods{display:flex;gap:8px;margin-bottom:16px;}
+    .co-method-tab{flex:1;padding:9px 6px;border-radius:8px;border:1px solid rgba(168,85,247,.2);background:rgba(255,255,255,.03);font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gdark);cursor:pointer;transition:.2s;text-align:center;}
+    .co-method-tab.active{border-color:rgba(168,85,247,.6);background:rgba(124,58,237,.15);color:var(--pglow);}
+    .co-method-tab:hover:not(.active){border-color:rgba(168,85,247,.35);background:rgba(124,58,237,.07);}
+    .co-method-pane{display:none;}.co-method-pane.active{display:block;}
+    /* botones de pago */
+    .co-btn-stripe{width:100%;background:linear-gradient(135deg,#635bff,#8b5cf6);border:none;border-radius:8px;padding:14px 20px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:#fff;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
     .co-btn-stripe:hover{box-shadow:0 0 30px rgba(99,91,255,.55);transform:translateY(-2px);}
     .co-or{text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gdark);margin:6px 0 10px;}
     .co-btn-paypal{width:100%;background:#ffc439;border:none;border-radius:8px;padding:13px 20px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:#003087;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
     .co-btn-paypal:hover{box-shadow:0 0 20px rgba(255,196,57,.35);transform:translateY(-2px);}
-    .co-btn-visa{width:100%;background:linear-gradient(135deg,#1a1f71,#263293);border:none;border-radius:8px;padding:13px 20px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:#fff;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;}
-    .co-btn-visa:hover{box-shadow:0 0 20px rgba(26,31,113,.6);transform:translateY(-2px);}
+    .co-btn-crypto{width:100%;background:linear-gradient(135deg,#0052ff,#1652f0);border:none;border-radius:8px;padding:14px 20px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:#fff;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
+    .co-btn-crypto:hover{box-shadow:0 0 30px rgba(0,82,255,.5);transform:translateY(-2px);}
+    .co-crypto-note{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdim);text-align:center;margin-bottom:12px;line-height:1.6;}
+    .co-crypto-coins{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+    .co-coin{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 8px;border-radius:4px;border:1px solid rgba(0,82,255,.25);background:rgba(0,82,255,.08);color:#60a5fa;}
     .co-btn-free{width:100%;background:linear-gradient(135deg,#16a34a,#22c55e);border:none;border-radius:8px;padding:14px 20px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:#fff;cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;}
     .co-btn-free:hover{box-shadow:0 0 20px rgba(34,197,94,.4);transform:translateY(-2px);}
     .co-security{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdark);text-align:center;line-height:1.8;margin-bottom:10px;}
-    .co-cards{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+    .co-cards{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
     .co-card-badge{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:3px 9px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdark);}
     .co-err{font-family:'Share Tech Mono',monospace;font-size:10px;color:#f87171;margin-top:4px;display:none;}
     .co-err.show{display:block;}
+    /* modal de pago confirmado */
+    .pay-ok-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s;}
+    .pay-ok-overlay.open{opacity:1;pointer-events:all;}
+    .pay-ok-box{background:var(--card);border:1px solid rgba(74,222,128,.4);border-radius:16px;padding:40px 32px;max-width:420px;width:92%;text-align:center;box-shadow:0 0 80px rgba(74,222,128,.2);}
+    .pay-ok-icon{font-size:52px;margin-bottom:16px;}
+    .pay-ok-title{font-family:'Orbitron',monospace;font-size:16px;font-weight:900;color:#4ade80;margin-bottom:10px;}
+    .pay-ok-sub{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--gray);line-height:1.7;margin-bottom:24px;}
+    .pay-ok-btn{display:inline-block;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.4);border-radius:8px;padding:10px 24px;font-family:'Share Tech Mono',monospace;font-size:11px;color:#4ade80;cursor:pointer;}
 
     /* ─ CRM ─ */
     .crm{padding:90px 0;background:var(--bg2);}
@@ -3190,10 +3208,12 @@ function _mxfApplySession(session){
       navUserName.textContent = '👤 ' + (session.name || session.email);
     }
   }
-  // Admin: ocultar "VER PLANES" y badge de activación
+  // Admin: ocultar "VER PLANES" y badge de activación; mostrar generador de claves
   if(session.role === 'admin'){
     if(navVerPlanes) navVerPlanes.style.display = 'none';
     if(badge) badge.style.display = 'none';
+    const adminBtn=document.getElementById('ws-admin-keygen-btn');
+    if(adminBtn) adminBtn.style.display='';
   }
 
   /* ── WORKSPACE TOPBAR ── */
@@ -3382,6 +3402,11 @@ function mxfLogout(){
   if(err)  err.textContent = '';
   mxfLoginTab('in');
   _updatePPCta();
+  // Ocultar panel admin al salir
+  const adminBtn=document.getElementById('ws-admin-keygen-btn');
+  if(adminBtn) adminBtn.style.display='none';
+  const adminPanel=document.getElementById('ws-admin-keygen');
+  if(adminPanel) adminPanel.style.display='none';
 }
 
 /* ── Product Preview: rellena el panel y mapa del hero preview ── */
@@ -3436,7 +3461,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   populateSectors();
   populateCities();
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'){closeModal();closeCheckout();closeWorkspace();closeActivationModal();const lov=document.getElementById('mxf-login-ov');if(lov)lov.classList.add('hidden');}
+    if(e.key==='Escape'){closeModal();closeCheckout();closeWorkspace();closeActivationModal();closePayOk();const lov=document.getElementById('mxf-login-ov');if(lov)lov.classList.add('hidden');}
   });
   /* arrancar demo interactivo con datos por defecto */
   setTimeout(runLiveDemo,120);
@@ -3450,6 +3475,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   _updateBbddGate();
   /* actualizar CTA del product preview */
   _updatePPCta();
+  /* detectar retorno desde pasarela de pago */
+  _checkPaymentReturn();
 });
 
 /* ═══════════════════════════════════════════════════════════════
@@ -3613,12 +3640,23 @@ function _cacheAge(ts){
 /* ═══════════════════════════════════════════
    PASARELA DE PAGO — CHECKOUT MODAL
    ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   CONFIGURACIÓN DE PAGOS — reemplaza los valores REEMPLAZA_*
+   ─────────────────────────────────────────────────────────────
+   STRIPE:  crear Payment Links en dashboard.stripe.com → Products
+            URL de éxito: https://clubj3n-ai.github.io/MAXFINDER/?payment=success&plan=pro
+   PAYPAL:  crear planes en developer.paypal.com → Subscriptions
+            URL de retorno: https://clubj3n-ai.github.io/MAXFINDER/?payment=success&plan=pro
+   CRYPTO:  crear productos en commerce.coinbase.com → Products
+            Webhook: Make.com → genera clave → envía email
+   ═══════════════════════════════════════════════════════════════ */
 const PLANS={
   pro:{
     label:'// PRO',price:'€49',period:'/mes · sin permanencia',
     feats:'500 desbloqueos/mes · Diagnóstico completo · Mensajes GPT-5 · CRM Kanban',
     stripeUrl:'https://buy.stripe.com/REEMPLAZA_LINK_PRO',
     paypalUrl:'https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=REEMPLAZA_PRO',
+    cryptoUrl:'https://commerce.coinbase.com/checkout/REEMPLAZA_CRYPTO_PRO',
     isFree:false
   },
   agency:{
@@ -3626,6 +3664,7 @@ const PLANS={
     feats:'Desbloqueos ilimitados · Soporte 24h · CSV + PDF auditoría · API acceso',
     stripeUrl:'https://buy.stripe.com/REEMPLAZA_LINK_AGENCY',
     paypalUrl:'https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=REEMPLAZA_AGENCY',
+    cryptoUrl:'https://commerce.coinbase.com/checkout/REEMPLAZA_CRYPTO_AGENCY',
     isFree:false
   }
 };
@@ -3694,17 +3733,81 @@ function payWithPayPal(){
 }
 
 function payWithVisa(){
+  // Alias para compatibilidad — mismo flujo que Stripe
+  payWithStripe();
+}
+
+function payWithCrypto(){
   if(!activePlan||!validateForm())return;
-  const email=document.getElementById('co-email').value.trim();
-  // Visa redirige al mismo checkout de Stripe (que acepta Visa/MC/Amex)
-  const url=activePlan.stripeUrl+(activePlan.stripeUrl.includes('?')?'&':'?')+'prefilled_email='+encodeURIComponent(email);
-  window.open(url,'_blank');
+  window.open(activePlan.cryptoUrl,'_blank');
+}
+
+/* Cambiar tab de método de pago */
+function coSwitchMethod(method, tabEl){
+  document.querySelectorAll('.co-method-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.co-method-pane').forEach(p=>p.classList.remove('active'));
+  if(tabEl) tabEl.classList.add('active');
+  const pane=document.getElementById('co-pane-'+method);
+  if(pane) pane.classList.add('active');
+}
+
+/* Modal de pago confirmado */
+function closePayOk(){
+  document.getElementById('pay-ok-modal')?.classList.remove('open');
+}
+function openPayOk(planName){
+  const msg=document.getElementById('pay-ok-msg');
+  if(msg && planName){
+    msg.innerHTML='Tu plan <strong style="color:#fff">'+planName.toUpperCase()+'</strong> se ha procesado correctamente.<br>'
+      +'<strong style="color:#4ade80">Recibirás tu clave de licencia por email en menos de 5 minutos.</strong><br><br>'
+      +'Cuando la tengas, pégala aquí para activar tu cuenta:';
+  }
+  document.getElementById('pay-ok-modal')?.classList.add('open');
+}
+
+/* Detectar retorno de pasarela de pago con ?payment=success */
+function _checkPaymentReturn(){
+  const p=new URLSearchParams(window.location.search);
+  if(p.get('payment')==='success'){
+    const plan=p.get('plan')||'pro';
+    // Limpiar URL sin recargar
+    window.history.replaceState({},'',window.location.pathname+window.location.hash);
+    // Pequeño delay para que la página esté lista
+    setTimeout(()=>openPayOk(plan), 600);
+  }
 }
 
 function activateFree(){
   closeCheckout();
   const el=document.getElementById('bbdd');
   if(el)el.scrollIntoView({behavior:'smooth'});
+}
+
+/* ─ Admin: panel generador de claves ─ */
+function wsToggleKeyGen(){
+  const p=document.getElementById('ws-admin-keygen');
+  if(!p)return;
+  p.style.display=(p.style.display==='flex'?'none':'flex');
+}
+function wsGenKey(){
+  const plan=(document.getElementById('adm-plan')?.value||'PRO').trim();
+  let code=(document.getElementById('adm-code')?.value||'').trim();
+  if(!code){
+    // Generar código aleatorio de 8 chars si no se pone
+    const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    code=''; for(let i=0;i<8;i++) code+=chars[Math.floor(Math.random()*chars.length)];
+  }
+  const key=generateLicenseKey(plan,code);
+  const out=document.getElementById('adm-key-out');
+  const cpOk=document.getElementById('adm-copy-ok');
+  if(out){
+    out.textContent=key;
+    out.onclick=()=>{
+      navigator.clipboard.writeText(key).then(()=>{
+        if(cpOk){cpOk.style.display='inline';setTimeout(()=>{cpOk.style.display='none';},2000);}
+      });
+    };
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -4266,7 +4369,21 @@ async function openWorkspaceAndSearch(){
         <span id="ws-user-name"></span>
         <button class="ws-logout-btn" onclick="mxfLogout()">Cerrar sesión</button>
       </div>
+      <!-- Panel admin: solo visible para julen_julen@outlook.es -->
+      <button class="ws-plan-badge active" id="ws-admin-keygen-btn" style="display:none;font-size:9px;" onclick="wsToggleKeyGen()">🔑 GENERAR CLAVE</button>
     </div>
+  </div>
+  <!-- Admin: generador de claves (oculto por defecto) -->
+  <div id="ws-admin-keygen" style="display:none;padding:12px 22px;background:rgba(124,58,237,.08);border-bottom:1px solid rgba(168,85,247,.2);display:none;align-items:center;gap:10px;flex-wrap:wrap;">
+    <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--pglow);">// GENERAR CLAVE CLIENTE</span>
+    <select id="adm-plan" style="background:var(--bg2);border:1px solid var(--border);color:var(--white);border-radius:5px;padding:4px 8px;font-family:'Share Tech Mono',monospace;font-size:10px;">
+      <option value="PRO">PRO</option>
+      <option value="AGENCY">AGENCY</option>
+    </select>
+    <input id="adm-code" type="text" maxlength="8" placeholder="ID pedido (8 chars)" style="background:var(--bg2);border:1px solid var(--border);color:var(--white);border-radius:5px;padding:4px 10px;font-family:'Share Tech Mono',monospace;font-size:10px;width:140px;" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"/>
+    <button onclick="wsGenKey()" style="background:rgba(124,58,237,.3);border:1px solid rgba(168,85,247,.4);color:var(--pglow);border-radius:5px;padding:5px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;cursor:pointer;">GENERAR</button>
+    <span id="adm-key-out" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#4ade80;letter-spacing:.5px;cursor:pointer;" title="Clic para copiar"></span>
+    <span id="adm-copy-ok" style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gdim);display:none;">✓ copiada</span>
   </div>
 
   <!-- Body -->
@@ -4338,7 +4455,7 @@ async function openWorkspaceAndSearch(){
       <div class="co-plan-feats" id="co-plan-feats"></div>
     </div>
 
-    <!-- Formulario planes de pago -->
+    <!-- Formulario datos + método de pago -->
     <div id="co-pay-area">
       <label class="co-label">EMAIL DE FACTURACIÓN</label>
       <input type="email" class="co-input" id="co-email" placeholder="tu@empresa.com" />
@@ -4347,19 +4464,50 @@ async function openWorkspaceAndSearch(){
       <input type="text" class="co-input" id="co-name-field" placeholder="Nombre y apellidos" />
       <div class="co-err" id="co-name-err">Introduce tu nombre</div>
       <div class="co-divider"></div>
-      <button class="co-btn-stripe" onclick="payWithStripe()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
-        PAGAR CON STRIPE
-      </button>
-      <div class="co-or">— o también —</div>
-      <button class="co-btn-paypal" onclick="payWithPayPal()">
-        <span style="font-family:Arial,sans-serif;font-weight:900;font-size:15px;color:#003087">Pay</span><span style="font-family:Arial,sans-serif;font-weight:900;font-size:15px;color:#009cde">Pal</span>
-        &nbsp;&nbsp;PAGAR CON PAYPAL
-      </button>
-      <button class="co-btn-visa" onclick="payWithVisa()">
-        <svg width="42" height="14" viewBox="0 0 750 237" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M278.198 235.647H178.697L240.369 2.149H339.874L278.198 235.647Z" fill="white"/><path d="M524.307 10.396C504.888 2.626 474.045 0 440.448 0C342.22 0 272.102 50.604 271.686 123.07C270.851 177.344 321.895 207.44 360.367 225.698C399.671 244.375 412.89 256.468 412.471 273.055C412.054 298.225 381.212 309.9 352.454 309.9C312.315 309.9 290.806 304.037 257.626 289.03L244.407 282.749L230.355 366.602C252.698 376.706 294.086 385.726 337.141 386.145C441.282 386.145 510.147 336.378 510.981 258.978C511.398 216.848 485.837 184.461 430.58 157.612C394.778 140.187 372.852 128.514 373.268 110.672C373.268 94.921 392.27 78.333 433.24 78.333C467.669 77.914 492.813 86.103 511.815 94.084L521.392 98.278L535.027 16.677L524.307 10.396Z" fill="white"/><path d="M652.933 2.149H574.097C550.505 2.149 532.756 9.083 522.344 33.199L382.013 235.647H486.57C486.57 235.647 503.485 190.305 507.263 180.619H634.601C637.547 191.977 646.290 235.647 646.290 235.647H739.006L652.933 2.149ZM534.193 112.346C542.521 89.07 574.514 0 574.514 0C574.097 0.837 583.257 -24.333 588.284 -40.920L595.779 -3.768C595.779 -3.768 617.705 101.826 622.314 122.869H535.028L534.193 112.346Z" fill="white"/><path d="M145.926 2.149L48.531 161.388L38.537 110.672C21.622 55.232 -26.998 -4.605 -80.996 -33.199L7.695 235.228H113.086L278.614 2.149H145.926Z" fill="white"/><path d="M-25.329 2.149H-185.665L-187 9.083C-60.41 40.133 32.956 112.346 62.547 195.780L30.554 33.199C24.694 9.502 8.529 2.986 -11.721 2.149H-25.329Z" fill="#F7A600"/></svg>
-        &nbsp;PAGAR CON VISA
-      </button>
+      <!-- Tabs método de pago -->
+      <label class="co-label">MÉTODO DE PAGO</label>
+      <div class="co-methods">
+        <div class="co-method-tab active" onclick="coSwitchMethod('card',this)">💳 Tarjeta</div>
+        <div class="co-method-tab" onclick="coSwitchMethod('paypal',this)">🅿️ PayPal</div>
+        <div class="co-method-tab" onclick="coSwitchMethod('crypto',this)">₿ Crypto</div>
+      </div>
+      <!-- Tarjeta (Stripe) -->
+      <div class="co-method-pane active" id="co-pane-card">
+        <button class="co-btn-stripe" onclick="payWithStripe()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+          PAGAR CON TARJETA
+        </button>
+        <div class="co-cards" style="margin-top:6px;">
+          <span class="co-card-badge" style="color:#1a1f71;background:rgba(26,31,113,.15);border-color:rgba(26,31,113,.3);">VISA</span>
+          <span class="co-card-badge">MASTERCARD</span>
+          <span class="co-card-badge">AMEX</span>
+          <span class="co-card-badge" style="color:#555;background:rgba(255,255,255,.05);">Apple Pay</span>
+          <span class="co-card-badge" style="color:#4285f4;background:rgba(66,133,244,.08);border-color:rgba(66,133,244,.2);">G Pay</span>
+        </div>
+      </div>
+      <!-- PayPal -->
+      <div class="co-method-pane" id="co-pane-paypal">
+        <button class="co-btn-paypal" onclick="payWithPayPal()">
+          <span style="font-family:Arial,sans-serif;font-weight:900;font-size:15px;color:#003087">Pay</span><span style="font-family:Arial,sans-serif;font-weight:900;font-size:15px;color:#009cde">Pal</span>
+          &nbsp;&nbsp;PAGAR CON PAYPAL
+        </button>
+        <div class="co-crypto-note">Serás redirigido a PayPal para completar la suscripción mensual.</div>
+      </div>
+      <!-- Crypto (Coinbase Commerce) -->
+      <div class="co-method-pane" id="co-pane-crypto">
+        <div class="co-crypto-coins">
+          <span class="co-coin">₿ BTC</span>
+          <span class="co-coin">Ξ ETH</span>
+          <span class="co-coin">◎ SOL</span>
+          <span class="co-coin">$ USDC</span>
+          <span class="co-coin">$ USDT</span>
+        </div>
+        <button class="co-btn-crypto" onclick="payWithCrypto()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.546z"/><path d="M17.485 10.424c.24-1.616-.988-2.485-2.668-3.065l.545-2.183-1.33-.332-.53 2.126c-.35-.088-.71-.17-1.07-.252l.534-2.14-1.33-.332-.545 2.183c-.29-.066-.574-.13-.848-.2l.001-.007-1.835-.458-.354 1.42s.988.227.968.24c.54.135.637.492.62.775l-.622 2.494c.037.01.085.023.137.044l-.14-.035-.873 3.497c-.065.163-.232.407-.607.314.013.02-.97-.242-.97-.242l-.66 1.52 1.73.432c.32.08.636.165.946.244l-.55 2.207 1.328.33.545-2.186c.364.1.717.19 1.063.276l-.543 2.176 1.33.332.55-2.202c2.268.43 3.975.256 4.69-1.795.578-1.65-.029-2.6-1.222-3.22.87-.2 1.525-.772 1.7-1.952zm-3.044 4.27c-.41 1.65-3.186.758-4.087.535l.73-2.92c.9.224 3.79.67 3.357 2.385zm.41-4.285c-.376 1.505-2.695.74-3.447.553l.66-2.648c.753.188 3.176.538 2.787 2.095z" fill="#0052FF"/></svg>
+          PAGAR CON CRYPTO
+        </button>
+        <div class="co-crypto-note">Vía Coinbase Commerce. Recibirás tu licencia por email al confirmar el pago en blockchain.</div>
+      </div>
     </div>
 
     <!-- Plan gratis -->
@@ -4367,17 +4515,24 @@ async function openWorkspaceAndSearch(){
       <button class="co-btn-free" onclick="activateFree()">✓ &nbsp;EMPEZAR GRATIS AHORA</button>
     </div>
 
-    <div class="co-security">
-      🔒 &nbsp;Pago 100% seguro · Encriptación SSL 256-bit<br>
-      Sin permanencia · Cancela en cualquier momento · Factura automática
+    <div class="co-security" style="margin-top:16px;">
+      🔒 &nbsp;Pago 100% seguro · SSL 256-bit · Sin permanencia<br>
+      Tu licencia llega al email en &lt;5 min tras confirmar el pago
     </div>
-    <div class="co-cards">
-      <span class="co-card-badge" style="color:#1a1f71;background:rgba(26,31,113,.15);border-color:rgba(26,31,113,.3);">VISA</span>
-      <span class="co-card-badge">MASTERCARD</span>
-      <span class="co-card-badge">AMEX</span>
-      <span class="co-card-badge" style="color:#635bff;background:rgba(99,91,255,.1);border-color:rgba(99,91,255,.25);">STRIPE</span>
-      <span class="co-card-badge" style="color:#009cde;background:rgba(0,156,222,.1);border-color:rgba(0,156,222,.25);">PAYPAL</span>
+  </div>
+</div>
+
+<!-- PAYMENT SUCCESS MODAL -->
+<div class="pay-ok-overlay" id="pay-ok-modal" onclick="if(event.target===this)closePayOk()">
+  <div class="pay-ok-box">
+    <div class="pay-ok-icon">✅</div>
+    <div class="pay-ok-title">¡PAGO RECIBIDO!</div>
+    <div class="pay-ok-sub" id="pay-ok-msg">
+      Tu pago se ha procesado correctamente.<br>
+      <strong style="color:#4ade80">Recibirás tu clave de licencia por email en menos de 5 minutos.</strong><br><br>
+      Cuando la tengas, pégala aquí para activar tu cuenta:
     </div>
+    <button class="pay-ok-btn" onclick="closePayOk();openActivationModal()">🔑 INTRODUCIR MI CLAVE</button>
   </div>
 </div>
 
