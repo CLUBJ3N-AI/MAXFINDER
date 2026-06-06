@@ -70,6 +70,7 @@
 
     /* ─ CURSOR PERSONALIZADO ─ */
     *,*::after,*::before{cursor:none!important;}
+    .leaflet-container, .leaflet-container *{cursor:crosshair!important;}
     .cur-dot{position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:#c084fc;box-shadow:0 0 8px #c084fc,0 0 18px #a855f7,0 0 32px rgba(168,85,247,.55);pointer-events:none;z-index:999999;transform:translate(-50%,-50%);transition:transform .1s,background .15s;will-change:transform;}
     .cur-ring{position:fixed;top:0;left:0;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(192,132,252,.72);box-shadow:0 0 12px rgba(168,85,247,.35),inset 0 0 8px rgba(168,85,247,.08);pointer-events:none;z-index:999998;transform:translate(-50%,-50%);transition:width .18s,height .18s,border-color .18s,box-shadow .18s;will-change:transform;}
     .cur-dot.cur-hover{background:#e879f9;scale:2.2;}
@@ -2000,18 +2001,17 @@ function initCursor(){
   }
   let mx=window.innerWidth/2, my=window.innerHeight/2;
   let rx=mx, ry=my;
-  /* mover el dot exactamente con el ratón via transform (GPU) */
   document.addEventListener('mousemove',e=>{
     mx=e.clientX; my=e.clientY;
-    dot.style.transform=`translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
-    const overMap=e.target.closest('#pp-leafmap,#ws-map,.leaflet-container');
-    const op=overMap?'0':'1';
-    dot.style.opacity=op; ring.style.opacity=op;
-  }, {passive:true});
-  /* ring sigue con lerp más rápido via transform */
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+    const overMap=!!e.target.closest('.leaflet-container');
+    dot.style.display=overMap?'none':'block';
+    ring.style.display=overMap?'none':'block';
+  },{passive:true});
   (function loop(){
-    rx+=(mx-rx)*.22; ry+=(my-ry)*.22;
-    ring.style.transform=`translate(calc(${Math.round(rx*10)/10}px - 50%), calc(${Math.round(ry*10)/10}px - 50%))`;
+    rx+=(mx-rx)*.18; ry+=(my-ry)*.18;
+    ring.style.left=Math.round(rx)+'px';
+    ring.style.top=Math.round(ry)+'px';
     requestAnimationFrame(loop);
   })();
   /* hover sobre elementos interactivos */
