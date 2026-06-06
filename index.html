@@ -2000,10 +2000,13 @@ function initCursor(){
   }
   let mx=window.innerWidth/2, my=window.innerHeight/2;
   let rx=mx, ry=my;
-  /* mover el dot exactamente con el ratón */
+  /* mover el dot exactamente con el ratón — ocultar en mapas */
   document.addEventListener('mousemove',e=>{
     mx=e.clientX; my=e.clientY;
     dot.style.left=mx+'px'; dot.style.top=my+'px';
+    const overMap=e.target.closest('#pp-leafmap,#ws-map,.leaflet-container');
+    dot.style.opacity=overMap?'0':'1';
+    ring.style.opacity=overMap?'0':'1';
   });
   /* ring sigue con lerp suave */
   (function loop(){
