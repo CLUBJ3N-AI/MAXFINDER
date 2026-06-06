@@ -70,11 +70,11 @@
 
     /* ─ CURSOR PERSONALIZADO ─ */
     *,*::after,*::before{cursor:none!important;}
-    .cur-dot{position:fixed;width:7px;height:7px;border-radius:50%;background:#c084fc;box-shadow:0 0 8px #c084fc,0 0 18px #a855f7,0 0 32px rgba(168,85,247,.55);pointer-events:none;z-index:999999;transform:translate(-50%,-50%);transition:transform .12s,background .15s;will-change:left,top;}
-    .cur-ring{position:fixed;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(192,132,252,.72);box-shadow:0 0 12px rgba(168,85,247,.35),inset 0 0 8px rgba(168,85,247,.08);pointer-events:none;z-index:999998;transform:translate(-50%,-50%);transition:width .18s,height .18s,border-color .18s,box-shadow .18s;will-change:left,top;}
-    .cur-dot.cur-hover{transform:translate(-50%,-50%) scale(2.2);background:#e879f9;}
+    .cur-dot{position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:#c084fc;box-shadow:0 0 8px #c084fc,0 0 18px #a855f7,0 0 32px rgba(168,85,247,.55);pointer-events:none;z-index:999999;transform:translate(-50%,-50%);transition:transform .1s,background .15s;will-change:transform;}
+    .cur-ring{position:fixed;top:0;left:0;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(192,132,252,.72);box-shadow:0 0 12px rgba(168,85,247,.35),inset 0 0 8px rgba(168,85,247,.08);pointer-events:none;z-index:999998;transform:translate(-50%,-50%);transition:width .18s,height .18s,border-color .18s,box-shadow .18s;will-change:transform;}
+    .cur-dot.cur-hover{background:#e879f9;scale:2.2;}
     .cur-ring.cur-hover{width:48px;height:48px;border-color:rgba(232,121,249,.85);box-shadow:0 0 20px rgba(232,121,249,.45),inset 0 0 14px rgba(232,121,249,.12);}
-    .cur-dot.cur-click{transform:translate(-50%,-50%) scale(.6);background:#fff;}
+    .cur-dot.cur-click{background:#fff;scale:.6;}
     .cur-ring.cur-click{width:18px;height:18px;border-color:#fff;box-shadow:0 0 16px rgba(255,255,255,.6);}
 
     /* ─ SMART TOOLTIPS ─ */
@@ -2000,19 +2000,18 @@ function initCursor(){
   }
   let mx=window.innerWidth/2, my=window.innerHeight/2;
   let rx=mx, ry=my;
-  /* mover el dot exactamente con el ratón — ocultar en mapas */
+  /* mover el dot exactamente con el ratón via transform (GPU) */
   document.addEventListener('mousemove',e=>{
     mx=e.clientX; my=e.clientY;
-    dot.style.left=mx+'px'; dot.style.top=my+'px';
+    dot.style.transform=`translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
     const overMap=e.target.closest('#pp-leafmap,#ws-map,.leaflet-container');
-    dot.style.opacity=overMap?'0':'1';
-    ring.style.opacity=overMap?'0':'1';
-  });
-  /* ring sigue con lerp suave */
+    const op=overMap?'0':'1';
+    dot.style.opacity=op; ring.style.opacity=op;
+  }, {passive:true});
+  /* ring sigue con lerp más rápido via transform */
   (function loop(){
-    rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
-    ring.style.left=Math.round(rx*10)/10+'px';
-    ring.style.top=Math.round(ry*10)/10+'px';
+    rx+=(mx-rx)*.22; ry+=(my-ry)*.22;
+    ring.style.transform=`translate(calc(${Math.round(rx*10)/10}px - 50%), calc(${Math.round(ry*10)/10}px - 50%))`;
     requestAnimationFrame(loop);
   })();
   /* hover sobre elementos interactivos */
